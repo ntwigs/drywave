@@ -34,7 +34,6 @@ public class Move : MonoBehaviour {
 
 	void FixedUpdate() {
 		#if UNITY_EDITOR
-		Debug.Log("ENTER");
 		MoveCharacter(Input.GetAxis("Horizontal"));
 		#endif
 	}
