@@ -6,6 +6,15 @@ using UnityEngine.UI;
 public class RestartMenu : MonoBehaviour {
 	public void setFinalScore (string score) {
 		Text restartScoreText = gameObject.transform.Find("Score").GetComponent<Text>();
-		restartScoreText.text = "Score: " + score;
+		restartScoreText.text = "" + score;
+	}
+	public void setHighscore (string score) {
+		Text restartScoreText = gameObject.transform.Find("Highscore").GetComponent<Text>();
+		restartScoreText.text = "" + score;
+	}
+
+	public void setColor () {
+		Text restartScoreText = gameObject.transform.Find("HighscoreText").GetComponent<Text>();
+		restartScoreText.color = new Color32(64, 249, 177, 255);
 	}
 }

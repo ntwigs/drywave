@@ -23,6 +23,10 @@ public class Score : MonoBehaviour {
 		this.hasStarted = hasStarted;
 	}
 
+	public int getScore () {
+		return score;
+	}
+
 	public void removePoints () {
 		text.text = "";
 	}
@@ -44,6 +48,6 @@ public class Score : MonoBehaviour {
 	}
 
 	void AddPoints () {
-		score += 1;
+		score += 10;
 	}
 }

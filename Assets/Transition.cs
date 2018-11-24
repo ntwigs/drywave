@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class Transition : MonoBehaviour {
 	public Animator transitionAnimation;
-	public string sceneName;
 
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.Space)) {
@@ -15,6 +14,7 @@ public class Transition : MonoBehaviour {
 
 	IEnumerator LoadScene () {
 		transitionAnimation.SetTrigger("end");
-		yield return new WaitForSeconds(1.5f);
+		yield return new WaitForSeconds(5f);
+		SceneManager.LoadScene("Menu");
 	}
 }
