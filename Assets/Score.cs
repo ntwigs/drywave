@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour {
 	public Text text;
+	public ForcePush forcePush;
 	private int score;
 	public float pointRate;
 	private float nextPoint;
@@ -48,6 +49,7 @@ public class Score : MonoBehaviour {
 	}
 
 	void AddPoints () {
-		score += 10;
+		score += 1;
+		forcePush.updatePower();
 	}
 }

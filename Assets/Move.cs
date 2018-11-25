@@ -15,23 +15,6 @@ public class Move : MonoBehaviour {
 		characterBody = character.GetComponent<Rigidbody2D>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		int i = 0;
-
-		while(i < Input.touchCount) {
-			if (Input.GetTouch(i).position.x > ScreenWidth / 2) {
-				MoveCharacter(1.0f);
-			}
-			
-			if (Input.GetTouch(i).position.x < ScreenWidth / 2) {
-				MoveCharacter(-1.0f);
-			}
-
-			i++;
-		}
-	}
-
 	void FixedUpdate() {
 		#if UNITY_EDITOR
 		MoveCharacter(Input.GetAxis("Horizontal"));

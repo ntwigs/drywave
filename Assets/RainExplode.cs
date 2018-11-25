@@ -20,7 +20,7 @@ public class RainExplode : MonoBehaviour {
 			Destroy(gameObject);
 		}
 
-		if (collider.gameObject.name == "Force") {
+		if (collider.gameObject.name == "ForcePushHandler") {
 			float horizontalPosition = transform.position.x;
 			float verticalPosition = transform.position.y;
 			Destroy(gameObject);

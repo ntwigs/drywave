@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnRain : MonoBehaviour {
 
 	public GameObject rain;
+	public float maxSpawnRate;
 	public float spawnRate;
 	private float nextSpawn;
 
@@ -28,5 +29,12 @@ public class SpawnRain : MonoBehaviour {
 			Instantiate(rain, spawnPosition, Quaternion.identity);
 			nextSpawn = Time.time + spawnRate;
 		}
+		updateSpawnRate();
+	}
+
+	void updateSpawnRate() {
+		if (spawnRate > maxSpawnRate) {
+			spawnRate -= 0.001f;
+		} 
 	}
 }
