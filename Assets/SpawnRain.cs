@@ -29,7 +29,6 @@ public class SpawnRain : MonoBehaviour {
 			Instantiate(rain, spawnPosition, Quaternion.identity);
 			nextSpawn = Time.time + spawnRate;
 		}
-		updateSpawnRate();
 	}
 
 	void updateSpawnRate() {

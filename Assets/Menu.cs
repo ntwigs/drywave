@@ -9,13 +9,11 @@ public class Menu : MonoBehaviour {
 	public GameObject points;
 	public GameObject title;
 	public GameObject play;
-	public KeepMusic keepMusic;
 
 	private bool exists = false;
 	private Score score;
 
 	void Awake() {
-		keepMusic.PlayMusic();
 		score = points.GetComponent<Score>();
 	}
 

@@ -1,23 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-
-public class KeepMusic : MonoBehaviour {
-	private AudioSource audio;
-
-	void Awake () {
-		DontDestroyOnLoad(gameObject);
-		audio = GetComponent<AudioSource>();
-	}
-
-	public void PlayMusic()
-     {
-         if (audio.isPlaying) return;
-         audio.Play();
-     }
+using System.Collections;
  
-     public void StopMusic()
-     {
-         audio.Stop();
-     }
+public class KeepMusic : MonoBehaviour {
+    private static KeepMusic instance = null;
+    public static KeepMusic Instance {
+        get { 
+            return instance; 
+        }
+    }
+
+    void Awake()
+    {
+        if (instance != null && instance != this) {
+            Destroy(this.gameObject);
+            return;
+        } else {
+            instance = this;
+        }
+        DontDestroyOnLoad(this.gameObject);
+    }
 }
