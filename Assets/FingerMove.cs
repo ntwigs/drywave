@@ -17,9 +17,10 @@ public class FingerMove : MonoBehaviour {
 		if (Input.touchCount > 0) {
 			Touch touch = Input.GetTouch(0);
 			position = Camera.main.ScreenToWorldPoint(touch.position);
+			position.y = position.y + 0.5f;
 			position.z = 0;
 			direction = (position - transform.position);
-			character.velocity = new Vector2(direction.x, 0) * speed;
+			character.velocity = new Vector2(direction.x, direction.y) * speed;
 
 			if (touch.phase == TouchPhase.Ended) {
 				character.velocity = Vector2.zero;
