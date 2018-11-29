@@ -46,14 +46,15 @@ public class ForcePush : MonoBehaviour {
 
 	public void setPowerColor () {
 		if (power == 10 && characterSprite) {
-			characterSprite.color = new Color32(255, 183, 0, 255);
+			transitionAnimation.SetTrigger("loaded");
 			power += 1;
 		}
+
 		if (power == 11 && characterSprite && Input.touchCount <= 0) {
 			transitionAnimation.SetTrigger("force");
-			characterSprite.color = new Color32(255, 255, 255, 255);
 			power += 1;
 		}
+
 		if (power == 12) {
 			forceRange += 5;
 			forceCircle.radius = forceRange;

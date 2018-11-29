@@ -5,7 +5,6 @@ using UnityEngine;
 public class DestroyInstance : MonoBehaviour {
 	private BoxCollider2D collider;
 
-	// Use this for initialization
 	void Start () {
 		collider = GetComponent<BoxCollider2D>();
 		double verticalSize   = Camera.main.orthographicSize * 2.0;
