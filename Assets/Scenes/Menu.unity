@@ -782,7 +782,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rain: {fileID: 1676279248062642, guid: fe9524481b00d4924a98b449d14c4a53, type: 2}
-  maxSpawnRate: 0.01
   spawnRate: 0.1
 --- !u!1001 &623480615
 Prefab:

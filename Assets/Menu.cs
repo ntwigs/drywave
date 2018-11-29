@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour {
-	// public CircleCollider2D collider;
 	public GameObject protector;
 	public GameObject points;
 	public GameObject title;
@@ -13,10 +12,12 @@ public class Menu : MonoBehaviour {
 
 	private bool exists = false;
 	private Score score;
+	private SpawnRain spawnRain;
 
 	void Awake() {
 		animator = gameObject.GetComponent<Animator>();
 		score = points.GetComponent<Score>();
+		spawnRain = gameObject.GetComponentInChildren<SpawnRain>();
 	}
 
 	private void PlayGame () {
@@ -28,6 +29,7 @@ public class Menu : MonoBehaviour {
 
 		while(i < Input.touchCount) {
 			PlayGame();
+			spawnRain.setHasStarted();
 			score.setHasStarted(true);
 			StartCoroutine(RemoveMenu());
 			i++;
@@ -45,6 +47,7 @@ public class Menu : MonoBehaviour {
 		#if UNITY_EDITOR
 		if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0) {
 			PlayGame();
+			spawnRain.setHasStarted();
 			score.setHasStarted(true);
 			StartCoroutine(RemoveMenu());
 		}

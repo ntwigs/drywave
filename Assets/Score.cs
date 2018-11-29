@@ -26,7 +26,7 @@ public class Score : MonoBehaviour {
 	}
 
 	public int getScore () {
-		return score;
+		return score - 1;
 	}
 
 	public void removePoints () {
