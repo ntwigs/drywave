@@ -10,7 +10,7 @@ public class SpawnRain : MonoBehaviour {
 	private float width;
 	private bool hasStarted = false;
 	private float nextDecrease;
-	private float decreaseRate = 5;
+	private float decreaseRate = 8;
 
 	void Start () {
 		double verticalSize   = Camera.main.orthographicSize * 2.0;
