@@ -1837,6 +1837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionAnimation: {fileID: 1482881039}
   character: {fileID: 1482881031}
+  powerRate: 1
 --- !u!58 &1693019776
 CircleCollider2D:
   m_ObjectHideFlags: 0

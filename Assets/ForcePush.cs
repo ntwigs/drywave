@@ -6,9 +6,14 @@ using UnityEngine.UI;
 public class ForcePush : MonoBehaviour {
 	public Animator transitionAnimation;
 	public GameObject character;
+	public float powerRate;
+	private float nextPower;
+	
 	private CircleCollider2D forceCircle;
 	private SpriteRenderer characterSprite;
-	private int power = 0;	
+	private float power = 0;	
+	private int forceRange = 0;
+	
 
 	void Awake () {
 		characterSprite = character.GetComponent<SpriteRenderer>();
@@ -16,10 +21,9 @@ public class ForcePush : MonoBehaviour {
 	}
 
 	public void updatePower () {
-		float random = Random.RandomRange(0f, 2f);
-
-		if (power < 10 && random < 0.5) {
-			power += 1;
+		if (Time.time > nextPower && power < 10) {
+			power += 1f;
+			nextPower = Time.time + powerRate;
 		}
 	}
 
@@ -39,17 +43,24 @@ public class ForcePush : MonoBehaviour {
 			Physics2D.IgnoreCollision(collider.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
 		}
 	}
-	private int test = 0;
 
 	public void setPowerColor () {
 		if (power == 10 && characterSprite) {
-			test += 2;
-			forceCircle.radius = test;
-			if (test == 50) {
-				transitionAnimation.SetTrigger("force");
+			characterSprite.color = new Color32(255, 183, 0, 255);
+			power += 1;
+		}
+		if (power == 11 && characterSprite && Input.touchCount <= 0) {
+			transitionAnimation.SetTrigger("force");
+			characterSprite.color = new Color32(255, 255, 255, 255);
+			power += 1;
+		}
+		if (power == 12) {
+			forceRange += 5;
+			forceCircle.radius = forceRange;
+			if (forceRange == 50) {
 				power = 0;
-				test = 0;
-				forceCircle.radius = test;
+				forceRange = 0;
+				forceCircle.radius = forceRange;
 			}
 		}
 	}
