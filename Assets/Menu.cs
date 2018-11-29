@@ -9,11 +9,13 @@ public class Menu : MonoBehaviour {
 	public GameObject points;
 	public GameObject title;
 	public GameObject play;
+	private Animator animator;
 
 	private bool exists = false;
 	private Score score;
 
 	void Awake() {
+		animator = gameObject.GetComponent<Animator>();
 		score = points.GetComponent<Score>();
 	}
 
@@ -27,19 +29,24 @@ public class Menu : MonoBehaviour {
 		while(i < Input.touchCount) {
 			PlayGame();
 			score.setHasStarted(true);
-			Destroy(title);
-			Destroy(play);
+			StartCoroutine(RemoveMenu());
 			i++;
 		}
 	}	
+
+	IEnumerator RemoveMenu () {
+		animator.SetTrigger("end");
+		yield return new WaitForSeconds(1f);
+		Destroy(title);
+		Destroy(play);
+	}
 
 	void FixedUpdate () {
 		#if UNITY_EDITOR
 		if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0) {
 			PlayGame();
 			score.setHasStarted(true);
-			Destroy(title);
-			Destroy(play);
+			StartCoroutine(RemoveMenu());
 		}
 		#endif
 	}
