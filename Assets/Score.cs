@@ -11,6 +11,7 @@ public class Score : MonoBehaviour {
 	private float nextPoint;
 	private bool hasStarted = false;
 	private bool gameOver = false;
+	private Animator animator;
 
 	public bool getHasStarted () {
 		return hasStarted;
@@ -29,18 +30,30 @@ public class Score : MonoBehaviour {
 	}
 
 	public void removePoints () {
+		StartCoroutine(RemoveScore());
+	}
+
+	IEnumerator RemoveScore () {
+		animator.SetTrigger("hide");
+		yield return new WaitForSeconds(1f);
 		text.text = "";
 	}
 
+	IEnumerator DisplayScore () {
+		animator.SetTrigger("display");
+		yield return new WaitForSeconds(1f);
+	}
 
-	// Use this for initialization
 	void Start () {
+		animator = gameObject.GetComponentInParent<Animator>();
 		text = GetComponent<Text>();
 		score = 0;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
+		if (hasStarted) {
+			StartCoroutine(DisplayScore());
+		}
 		if (Time.time > nextPoint & hasStarted & !gameOver) {
 			text.text = "" + score;
 			this.AddPoints();
