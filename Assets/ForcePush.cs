@@ -56,9 +56,9 @@ public class ForcePush : MonoBehaviour {
 		}
 
 		if (power == 12) {
-			forceRange += 5;
+			forceRange += 10;
 			forceCircle.radius = forceRange;
-			if (forceRange == 50) {
+			if (forceRange == 100) {
 				power = 0;
 				forceRange = 0;
 				forceCircle.radius = forceRange;
