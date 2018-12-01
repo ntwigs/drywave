@@ -48,7 +48,7 @@ public class ForcePush : MonoBehaviour {
 
 	public void setPowerColor () {
 		if (power == 10 && characterSprite) {
-			if (isFirstPlay && Time.timeScale != 0.1f) {
+			if (isFirstPlay) {
 				StartCoroutine(pause());
 			}
 
@@ -62,6 +62,7 @@ public class ForcePush : MonoBehaviour {
 			if (isFirstPlay) {
 				tip.SetTrigger("hide_tip");
 				PlayerPrefs.SetInt("isFirstPlay", 1);
+				isFirstPlay = false;
 			}
 			power += 1;
 		}
