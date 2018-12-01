@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour {
 	public Canvas gameOverMenu;
+	public ParticleSystem emitter;
 	public GameObject canvas;
 	public Text score;
 	public Canvas counter;
@@ -22,6 +23,10 @@ public class GameOver : MonoBehaviour {
 
 			int currentHighscore = highscore.SetScore(scoreScript.getScore());
 			int currentScore = scoreScript.getScore();
+			
+			float horizontalPosition = transform.position.x;
+			float verticalPosition = transform.position.y;
+			Instantiate(emitter, new Vector2(horizontalPosition, verticalPosition), Quaternion.identity);
 
 			if (currentHighscore == currentScore) {
 				gameOverMenuScript.setColor();	
