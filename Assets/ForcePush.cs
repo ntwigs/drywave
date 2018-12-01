@@ -7,15 +7,17 @@ public class ForcePush : MonoBehaviour {
 	public Animator transitionAnimation;
 	public GameObject character;
 	public float powerRate;
+	public Animator tip;
 	private float nextPower;
 	
 	private CircleCollider2D forceCircle;
 	private SpriteRenderer characterSprite;
 	private float power = 0;	
 	private int forceRange = 0;
-	
+	private bool isFirstPlay;
 
 	void Awake () {
+		isFirstPlay = !PlayerPrefs.HasKey("isFirstPlay");
 		characterSprite = character.GetComponent<SpriteRenderer>();
 		forceCircle = GetComponent<CircleCollider2D>();
 	}
@@ -46,12 +48,21 @@ public class ForcePush : MonoBehaviour {
 
 	public void setPowerColor () {
 		if (power == 10 && characterSprite) {
+			if (isFirstPlay && Time.timeScale != 0.1f) {
+				StartCoroutine(pause());
+			}
+
 			transitionAnimation.SetTrigger("loaded");
 			power += 1;
 		}
 
 		if (power == 11 && characterSprite && Input.touchCount <= 0) {
+			Time.timeScale = 1;
 			transitionAnimation.SetTrigger("force");
+			if (isFirstPlay) {
+				tip.SetTrigger("hide_tip");
+				PlayerPrefs.SetInt("isFirstPlay", 1);
+			}
 			power += 1;
 		}
 
@@ -64,6 +75,12 @@ public class ForcePush : MonoBehaviour {
 				forceCircle.radius = forceRange;
 			}
 		}
+	}
+
+	IEnumerator pause () {
+		tip.SetTrigger("show_tip");
+		yield return new WaitForSeconds(0.2f);
+		Time.timeScale = 0;
 	}
 
 	void Update () {

@@ -15,6 +15,6 @@ public class RestartMenu : MonoBehaviour {
 
 	public void setColor () {
 		Text restartScoreText = gameObject.transform.Find("HighscoreText").GetComponent<Text>();
-		restartScoreText.color = new Color32(64, 249, 177, 255);
+		restartScoreText.color = new Color32(222, 205, 158, 255);
 	}
 }
